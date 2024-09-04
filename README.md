@@ -1,8 +1,10 @@
-## Production-Grade (ish) server orchestration with Kamal
+## Production-Grade (ish) server orchestration
 
 This is the architecture of our small cluster:
 
 ![Architecture](arch.png)
+
+> Except there's Cloudflare in front of the firewall.
 
 ### Architecture
 
@@ -12,6 +14,8 @@ It creates two servers: `web` where our application lives and `accessories` wher
 You can create more servers by updating `web_servers_count` or `accessories_count` in `variables.tf`. If there is more than one web server, a load balancer will be created and all the web servers will be added to it.
 
 In case multiple servers of different types are created, the naming will be `web-1`, `web-2`, `accessories-1`, and `accessories-2`, as opposed to `web`, `accessories`, the default naming convention.
+
+It also creates a Cloudflare record and a Page Rule for the given domain and subdomain.
 
 > [!IMPORTANT]
 > If you are copying this workflow, you should change the SSH keys in `cloudinit/base.yml` to your own.
@@ -61,7 +65,8 @@ The default setup of 1 web server and 1 accessory server will cost you around 9 
 ```terraform
 hetzner_api_key = "your-api-key"
 ```
-3. Update the `cloudinit/base.yml` file with your SSH keys (line #23)
-4. Run `terraform init`
-5. Run `terraform plan` (optional)
-6. Run `terraform apply`
+3. Use `ssh-keygen` to generate a new SSH key and save it in `~/.ssh/hetzner`
+4. Update the `cloudinit/base.yml` file with your SSH keys (line #23)
+5. Run `terraform init`
+6. Run `terraform plan` (optional)
+7. Run `terraform apply`

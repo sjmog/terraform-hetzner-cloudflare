@@ -1,6 +1,7 @@
 variable "hetzner_api_key" {
   description = "The Hetzner Cloud API Token"
   type        = string
+  sensitive   = true
 }
 
 # Hetzner locations
@@ -30,4 +31,20 @@ variable "web_servers_count" {
 variable "accessories_count" {
   type    = number
   default = 1
+}
+
+variable "cloudflare_api_token" {
+  description = "Cloudflare API Token"
+  type        = string
+  sensitive   = true
+}
+
+variable "domain_name" {
+  description = "Your domain name, e.g. example.com"
+  type        = string
+}
+
+variable "subdomain" {
+  description = "Your subdomain, e.g. www (use @ if you want the apex domain)"
+  type        = string
 }

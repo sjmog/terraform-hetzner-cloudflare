@@ -29,3 +29,13 @@ data "cloudinit_config" "cloud_config_accessories" {
     merge_type   = "list(append)+dict(recurse_array)+str()"
   }
 }
+
+data "cloudflare_zones" "domain" {
+  filter {
+    name = var.domain_name
+  }
+}
+
+data "cloudflare_zone" "domain" {
+  zone_id = data.cloudflare_zones.domain.zones[0].id
+}

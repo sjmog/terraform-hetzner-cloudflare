@@ -24,3 +24,7 @@ output "ssh_02_accessories_config" {
     format("Host %s\n  HostName %s\n  User kamal\n  ProxyJump %s", server.name, server.ipv4_address, hcloud_server.web[0].name)
   ])
 }
+
+# output "cloudflare_name_servers" {
+#   value = data.cloudflare_zone.domain.name_servers
+# }
