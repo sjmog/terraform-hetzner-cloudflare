@@ -21,6 +21,10 @@ It also creates a Cloudflare record and a Page Rule for the given domain and sub
 > If you are copying this workflow, you should change the SSH keys in `cloudinit/base.yml` to your own.
 > It is defined on `ssh_import_id` and imports the SSH keys from your GitHub account.
 
+### Using in a Rails app
+
+Just copy this whole directory to a `terraform` directory in your project and run `terraform apply`.
+
 ### Connecting to the servers
 
 After running `terraform apply`, the script will output an SSH configuration that can be copied to your `~/.ssh/config` file. This is to help you connect to servers since accessory servers are not accessible from the outside, you need to use the web server as a jump host. It looks like this:
